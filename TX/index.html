@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<script type="text/javascript">
+			
+		</script>
+		<script src="iscroll5.js">
+		</script>
+		<style>
+		*
+		{
+			margin:0;
+			padding:0;
+		}
+		ul
+		{
+			list-style: none;
+		}
+		html
+		{
+				width:100%;
+				height:100%;
+				overflow-x:hidden ;
+		}
+			body
+			{
+				width:100%;
+				height:100%;
+				box-sizing: border-box;
+			}
+			header
+			{
+				width:100%;
+				height:6rem;
+			}
+			header .logo
+			{
+				width:100%;
+				height:2rem;
+				position:relative;
+				padding-left:0.5rem;
+				padding-right:0.5rem;
+				box-sizing: border-box;
+			}
+			header .logo img
+			{
+				width:30%;
+				height:1.5rem;
+				padding-bottom: 0.3rem;
+				
+			}
+			header .logo p
+			{
+				display:inline-block;
+				width:60%;
+				height:2rem;
+				background:url(img/1.png) no-repeat;
+				background-size:cover;
+			}
+			header .logo span
+			{
+				display:inline-block;
+				width:2rem;
+				height: 1.3rem;
+				position:absolute;
+				right:0.5rem;
+				top:0.4rem;
+				background:#4998e7;
+				border-radius: 5px;
+				color:white;
+				font-size:0.7rem;
+				text-align: center;
+				line-height:1.3rem;
+			}
+			header .nav
+			{
+				width:100%;
+				height:4rem;
+				background:#4998e7;
+				padding:0.5rem;
+				box-sizing: border-box;
+			}
+			header .nav ul
+			{
+				width:100%;
+				height:100%;
+				display:flex;
+				flex-wrap: wrap;
+			}
+			header .nav ul li
+			{
+				width:20%;
+				height:50%;
+				text-align: center;
+				color:white;
+				font-size:0.9rem;
+			}
+			.lb
+			{
+				width:100%;
+				height:9rem;
+				position:relative;
+			}
+			.lb ul
+			{
+				width:200%;
+				height:9rem;
+				position:absolute;
+				left:0;
+				top:0;
+			}
+			.lb ul li
+			{
+				width:50%;
+				height:9rem;
+				float:left;
+			}
+			.lb img
+			{
+				width:100%;
+				height:9rem;
+			}
+			.xw
+			{
+				width:100%;
+				height: 10rem;
+			}
+			.xw ul
+			{
+				width:100%;
+				height: 10rem;
+				padding:0.1rem;
+				box-sizing: border-box;
+			}
+			.xw ul li
+			{
+				width:100%;
+				height:20%;
+				border-bottom: 1px solid #e8e8e8;
+			}
+			.xw ul li span
+			{
+				display:inline-block;
+				font-size:0.9rem;
+				color:#4998e7;
+				height:100%;
+				line-height:2rem;
+				text-align: center;
+				padding-left:0.5rem;
+				float:left;
+				position:relative;
+			}
+			.xw ul li p
+			{
+				display:block;
+				font-size:0.9rem;
+				position:relative;
+				margin-left:3rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space:nowrap;
+				line-height: 2rem;
+			}
+			.xw ul li:nth-child(1) p:nth-child(2)
+			{
+				padding-left:1rem;
+			}
+			.xw ul li:nth-child(1) span:nth-child(1)::before
+			{
+					content: "";
+				display:block;
+				width:0.06rem;
+				height:1rem;
+				background:#000;
+				position:absolute;
+				top:0.5rem;
+				left:6rem;
+			}
+			.xw ul li span:before
+			{
+				content: "";
+				display:block;
+				width:0.05rem;
+				height:1rem;
+				background:#000;
+				position:absolute;
+				top:0.5rem;
+				left:2.6rem;
+			}
+			.bm
+			{
+				width:100%;
+				height:3.5rem;
+				box-sizing: border-box;
+				padding:0.5rem;
+			}
+			.bm span
+			{
+				display:block;
+				width:100%;
+				height:100%;
+				background:#edf6ff;
+				border-radius: 5px;
+				color:#4998e7;
+				line-height:2.5rem;
+				text-align: center;
+				font-size:0.8rem;
+			}
+			.zz
+			{
+				width:100%;
+				height:28rem;
+			}
+			.zz .sh
+			{
+				width:100%;
+				height: 10%;
+				background:url(img/headbg.png) no-repeat 0rem -3.2rem;
+				background-size:200%;
+				border-top:0.1rem solid #9ac7ed;
+			}
+			 .zz .sh h2
+			{
+				width:3.5rem;
+				height:50%;
+				float:left;
+				text-align: center;
+				line-height:300%;
+				font-size:1rem;
+				color:#2a70be;
+			}
+			.zz .qq
+			{
+				100%;
+				
+			}
+			.zz .qq ul
+			{
+				width:100%;
+				height:20rem;
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+			}
+			.zz .qq ul li:nth-child(1)
+			{
+				flex:2.5;
+				color:#ccc;
+			}
+			.zz .qq ul li
+			{
+				flex:1;
+				padding:0.5rem;
+				border-bottom: 1px solid #e8e8e8;
+				
+			}
+			.zz .qq ul li img
+			{
+				width:5rem;
+				height:5rem;
+				float:left;
+			}
+			.zz .qq ul li span
+			{
+				display: block;
+				margin-left:6rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.zz .qq ul li i
+			{
+				display: inline-block;
+				width:2rem;
+				height:1rem;
+				background:#4998e7;
+				border-radius: 5px;
+				text-align: center;
+				line-height:1rem;
+				font-size:0.5rem;
+				color:white;
+				font-style: normal;
+				float:left;
+			}
+			.zz .qq ul li b
+			{
+				display:inline-block;
+				width:80%;
+				height:1rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				font-size:0.8rem;
+				line-height:1rem;
+				margin-left:0.8rem;
+			}
+			.haha
+			{
+				width:100%;
+				height:3rem;
+				box-sizing: border-box;
+				padding:0.5rem;
+			}
+			.haha span
+			{
+				display: block;
+				width:100%;
+				height:2rem;
+				background:#f6f5f5;
+				border-radius: 5px;
+				text-align: center;
+				line-height:2rem;
+				color:#b4b4b4;
+				font-size:0.8rem;
+			}
+			.lb span
+			{
+				display:inline-block;
+				width:0.5rem;
+				height:0.5rem;
+				border: 0.1rem solid dodgerblue;
+				position:absolute;
+				z-index:1;
+				right:0.5rem;
+				bottom:0.8rem;
+			}
+			.lb span:nth-child(2)
+			{
+				position:absolute;
+				right:1.5rem;
+			}
+		</style>
+	</head>
+	<body id="qq">
+		<header>
+			<div class="logo">
+				<img src="img/logo.png">
+				<p></p>
+				<span>登录</span>
+			</div>
+			<div class="nav">
+				<ul>
+					<li>新闻</li>
+					<li>财经</li>
+					<li>娱乐</li>
+					<li>体育</li>
+					<li>更多</li>
+					<li>军事</li>
+					<li>NBA</li>
+					<li>应用</li>
+					<li>科技</li>
+					<li>星座</li>
+				</ul>
+			</div>
+			<section>
+				<div class="lb">
+					<ul>
+						<li><img src="img/0.jpg"></li>
+						<li><img src="img/1.jpg"></li>
+					</ul>
+					<span style="background:orange"></span>
+					<span></span>
+				</div>
+				<div class="xw">
+					<ul>
+						<li><span>HTML5精选</span><p>端午微信刷小屏游戏</p></li>
+						<li><span>经济</span><p>平均工资上涨 到手的钱可能会更少？</p></li>
+						<li><span>娱乐</span><p>杨幂刘恺威，在这一年他们为家庭做了多少努力？</p></li>
+						<li><span>体育</span><p>梦想不发皱！新疆足球少年如愿见到梅西</p></li>
+						<li><span>军事</span><p>境外追杀？行刺普京嫌犯在乌克兰遭枪击</p></li>
+					</ul>
+				</div>
+				<div class="bm">
+					<span>用QQ号登录，看个性化新闻</span>
+				</div>
+				<div class="zz">
+				<div class="sh">
+					<h2>新闻</h2>
+					<h2>社会</h2>
+					<h2>军事</h2>
+				</div>
+				<div class="qq">
+					<ul>
+						<li>
+							<img src="img/77.jpg">
+							<span>习近平给孩子们描绘的“童心圆”</span>
+						</li>
+						<li>
+							<i>独家</i>
+							<b>美退出《巴黎协定》 外交部：应珍惜维护来之不易成果</b>
+						</li>
+						<li>
+							<i>独家</i>
+							<b>台官方证实：4名台湾同胞菲律宾赌场袭击中身亡</b>
+						</li>
+						<li>
+							<i>独家</i>
+							<b>夫妻麦客：每天40度高温作业20小时</b>
+						</li>
+						<li>
+							<b>上海市政府原副秘书长戴海波受贿990万 一审获刑9年</b>
+						</li>
+						<li>
+							<b>朋友说买一枚五行币，一年后就手握百万，我该信吗？</b>
+						</li>
+						<li>
+							<i>独家</i>
+							<b>视频丨朴槿惠：我被崔顺实欺骗利用 什么都不知道</b>
+						</li>
+						<li>
+							<i>独家</i>
+							<b>今日热播视频专辑</b>
+						</li>
+						<li>
+							<b>新华社：别让大爷大妈和小伙儿再抢球场和头条了</b>
+						</li>
+					</ul>
+				</div>
+				</div>
+			</section>
+			<div class="haha">
+					<span>进入新闻频道</span>
+				</div>
+		</header>
+	</body>
+</html>
+	<script>
+			var qq=document.getElementById("qq");
+			document.documentElement.style.fontSize=innerWidth/16+"px";
+			var a = new IScroll("#qq");
+			document.addEventListener("touchstart",function(ev)
+			{
+				ev.preventDefault();
+			})
+			var lb=document.getElementsByClassName("lb");
+			var u=lb[0].getElementsByTagName("ul");
+			var ls=u[0].getElementsByTagName("li");
+			var sp=lb[0].getElementsByTagName("span");
+			var lefttwo=0;
+			var w=ls[0].clientWidth;
+			var x;
+			var n=0;
+			lb[0].addEventListener("touchstart",function(ev)
+			{
+				x=ev.changedTouches[0].pageX;
+				lefttwo=u[0].offsetLeft;
+			})
+			lb[0].addEventListener("touchmove",function(ev)
+			{
+				var jj=x-ev.changedTouches[0].pageX;
+				if(jj<0)
+				{
+					if(parseInt(u[0].offsetLeft)>w/10)
+					{
+						return;
+					}
+					u[0].style.left=-(x-ev.changedTouches[0].pageX)+lefttwo+"px";
+					
+				}
+				else
+				{
+					if(jj>0)
+					{
+						if(parseInt(u[0].offsetLeft)<-300)
+						{
+							return;
+						}
+						u[0].style.left=-(x-ev.changedTouches[0].pageX)+lefttwo+"px";
+					}
+				}
+				
+			})
+			lb[0].addEventListener("touchend",function(ev)
+			{
+				n=Math.round(u[0].offsetLeft/w);
+				u[0].style.left=w*n+"px";
+				
+						if(-u[0].offsetLeft/w==1)
+				{
+					sp[1].style.background="orange";
+					sp[0].style.background="none";
+				}else
+				{
+					sp[1].style.background="none";
+					sp[0].style.background="orange";
+				}				
+			})
+			var ez=0;
+			var time=setInterval(function()
+			{
+				ez++
+				if(ez==2)
+				{
+					ez=0;	
+				}
+				u[0].style.left=-(w*ez)+"px";
+				if(ez==1)
+				{
+					sp[1].style.background="orange";
+					sp[0].style.background="none";
+				}else
+				{
+					sp[1].style.background="none";
+					sp[0].style.background="orange";
+				}
+				
+			},3000)
+			lb[0].addEventListener("touchstart",function()
+			{
+				clearInterval(time);
+			})
+			for(var i=0;i<sp.length;i++)
+			{
+				sp[i].index=i;
+				sp[i].addEventListener("click",function()
+				{
+					u[0].style.left=-this.index*w+"px";
+				if(this.index==1)
+				{
+					sp[1].style.background="orange";
+					sp[0].style.background="none";
+				}else
+				{
+					sp[1].style.background="none";
+					sp[0].style.background="orange";
+				}
+				})
+			}
+	</script>
