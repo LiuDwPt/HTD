@@ -5,7 +5,10 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 		<script type="text/javascript">
-			
+			document.addEventListener("touchstart",function(ev)
+			{
+				ev.preventDefault();
+			})
 		</script>
 		<script src="iscroll5.js">
 		</script>
@@ -431,10 +434,6 @@
 			var qq=document.getElementById("qq");
 			document.documentElement.style.fontSize=innerWidth/16+"px";
 			var a = new IScroll("#qq");
-			document.addEventListener("touchstart",function(ev)
-			{
-				ev.preventDefault();
-			})
 			var lb=document.getElementsByClassName("lb");
 			var u=lb[0].getElementsByTagName("ul");
 			var ls=u[0].getElementsByTagName("li");
@@ -464,14 +463,13 @@
 				{
 					if(jj>0)
 					{
-						if(parseInt(u[0].offsetLeft)<-300)
+						if(parseInt(u[0].offsetLeft)<parseInt(-w*1))
 						{
 							return;
 						}
 						u[0].style.left=-(x-ev.changedTouches[0].pageX)+lefttwo+"px";
 					}
 				}
-				
 			})
 			lb[0].addEventListener("touchend",function(ev)
 			{
@@ -506,12 +504,17 @@
 					sp[1].style.background="none";
 					sp[0].style.background="orange";
 				}
-				
 			},3000)
-			lb[0].addEventListener("touchstart",function()
+			
+			lb[0].addEventListener("mouseover",function()
 			{
-				clearInterval(time);
+				clearInterval(time)
 			})
+			sp[0].addEventListener("",function()
+			{
+				alert(1);
+			})
+
 			for(var i=0;i<sp.length;i++)
 			{
 				sp[i].index=i;
