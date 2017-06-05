@@ -4,6 +4,9 @@
 		<meta charset="UTF-8">
 		<title></title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<script>
+		document.documentElement.style.fontSize=innerWidth/16+"px";
+	</script>
 	<style type="text/css">
 			*
 			{
@@ -18,7 +21,7 @@
 			}
 			#dv ul
 			{
-				width:200%;
+				width:800%;
 				height:300px;
 				list-style: none;
 				position:absolute;
@@ -27,24 +30,38 @@
 			}
 			#dv ul li
 			{
-				width:50%;
+				width:25rem;
 				height:300px;
 				float:left;
 			}
-			#dv ul li:nth-child(1)
+			#dv ul li:nth-child(4n+1)
 			{
 				background:red;
 			}
-			#dv ul li:nth-child(2)
+			#dv ul li:nth-child(4n+2)
 			{
 				background:orange;
+			}
+			#dv ul li:nth-child(4n+3)
+			{
+				background:yellow;
+			}
+			#dv ul li:nth-child(4n)
+			{
+				background:orchid;
 			}
 	</style>
 	</head>
 	<body>
 		<div id="dv">
 			<ul id="u">
-				<li id="ll"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
 				<li></li>
 			</ul>
 		</div>
@@ -60,8 +77,21 @@
 	dv.addEventListener("touchstart",function(ev)
 	{
 		ev.preventDefault();
+		var n=Math.round(u.offsetLeft/w);
+				 //实现连续的无缝滚动
+				 if(n==0){
+				 	num=4;   //如何是四张图这个num=4
+				 	console.log(num);
+				 	 u.style.left=-num*w+"px";
+				 }
+				 if(-n==7)
+				 {
+				 		num=3; 
+				 	 u.style.left=-num*w+"px";
+				 }
 		left=u.offsetLeft;
 	})
+	u.style.width=ls.length*w+"px";
 	var x;
 	dv.addEventListener("touchstart",function(ev)
 	{
