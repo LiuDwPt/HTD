@@ -6,7 +6,11 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 	<script>
 		document.documentElement.style.fontSize=innerWidth/16+"px";
-	</script>
+		document.addEventListener("touchstart",function(ev)
+		{
+			ev.preventDefault();
+		})
+</script>
 	<style type="text/css">
 			*
 			{
