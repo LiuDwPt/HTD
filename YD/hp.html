@@ -69,6 +69,10 @@
 </html>
 <script>
 	var	dv=document.getElementById("dv");
+	dv.addEventListener("touchstart",function(ev)
+	{
+		ev.preventDefault();
+	})
 	var ls=document.getElementsByTagName("li");
 	var u=document.getElementById("u");
 	var	ll=document.getElementById("ll");
