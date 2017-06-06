@@ -506,13 +506,30 @@
 				}
 			},3000)
 			
-			lb[0].addEventListener("mouseover",function()
+			lb[0].addEventListener("touchstart",function()
 			{
 				clearInterval(time)
 			})
-			sp[0].addEventListener("",function()
+			lb[0].addEventListener("touchend",function()
 			{
-				alert(1);
+				time=setInterval(function()
+			{
+				ez++
+				if(ez==2)
+				{
+					ez=0;	
+				}
+				u[0].style.left=-(w*ez)+"px";
+				if(ez==1)
+				{
+					sp[1].style.background="orange";
+					sp[0].style.background="none";
+				}else
+				{
+					sp[1].style.background="none";
+					sp[0].style.background="orange";
+				}
+			},3000)
 			})
 
 			for(var i=0;i<sp.length;i++)
