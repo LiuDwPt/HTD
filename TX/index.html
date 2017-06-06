@@ -508,12 +508,14 @@
 			
 			lb[0].addEventListener("touchstart",function()
 			{
-				clearInterval(time)
+					clearInterval(time) 
+					clearInterval(timetwo) 
 			})
+			
 			lb[0].addEventListener("touchend",function()
 			{
-				time=setInterval(function()
-			{
+				timetwo=setInterval(function()
+				{
 				ez++
 				if(ez==2)
 				{
@@ -524,12 +526,14 @@
 				{
 					sp[1].style.background="orange";
 					sp[0].style.background="none";
-				}else
+				}
+				else
 				{
 					sp[1].style.background="none";
 					sp[0].style.background="orange";
 				}
-			},3000)
+				},3000)
+				
 			})
 
 			for(var i=0;i<sp.length;i++)
