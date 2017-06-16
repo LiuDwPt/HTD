@@ -1,0 +1,26 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  width: 100%;
+  height: 6em;
+  background: red;
+}
+
+section {
+  width: 200%;
+  height: 100%;
+  background: brown;
+  overflow: auto;
+}
+
+footer {
+  width: 100%;
+  height: 4em;
+  background: blue;
+}
