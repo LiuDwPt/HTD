@@ -25,28 +25,40 @@ section
         {
             width:100%;
             padding:1rem;
-            background:red;
             box-sizing: border-box;
-            p
+            margin-top:1rem;
+            border: 0.2rem solid #000;
+            &:nth-child(1)
             {
-                font-size:1.5rem;
+                margin-top:0;
+            }
+            span
+            {
+                font-size:0.8rem;
+                border-radius: 5px;
+                border: 0.2rem solid cyan;
+                padding:0.5rem;
+                color: dodgerblue;
             }
             i
             {
                 display:inline-block;
                 width:100%;
                 background:lavender;
-                margin-top:1rem;
+                margin-top:1.5rem;
                 font-style: normal;
             }
-            span
+            p
             {
                 display:inline-block;
                 width:100%;
-                margin-top:1rem;
+                margin-top:1rem; 
+                position:relative;
                 img
                 {
-                    background-image:100% 100%;
+                   display:block;
+                   margin:0 auto;
+                    background-size:cover;
                 }
             }
         }

@@ -26,30 +26,42 @@ section ul {
 section ul li {
   width: 100%;
   padding: 1rem;
-  background: red;
   box-sizing: border-box;
+  margin-top: 1rem;
+  border: 0.2rem solid #000;
 }
 
-section ul li p {
-  font-size: 1.5rem;
+section ul li:nth-child(1) {
+  margin-top: 0;
+}
+
+section ul li span {
+  font-size: 0.8rem;
+  border-radius: 5px;
+  border: 0.2rem solid cyan;
+  padding: 0.5rem;
+  color: dodgerblue;
 }
 
 section ul li i {
   display: inline-block;
   width: 100%;
   background: lavender;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-style: normal;
 }
 
-section ul li span {
+section ul li p {
   display: inline-block;
   width: 100%;
   margin-top: 1rem;
+  position: relative;
 }
 
-section ul li span img {
-  background-image: 100% 100%;
+section ul li p img {
+  display: block;
+  margin: 0 auto;
+  background-size: cover;
 }
 
 footer {
