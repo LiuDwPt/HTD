@@ -13,10 +13,43 @@ header {
 }
 
 section {
-  width: 200%;
+  width: 100%;
   height: 100%;
-  background: brown;
   overflow: auto;
+}
+
+section ul {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+section ul li {
+  width: 100%;
+  padding: 1rem;
+  background: red;
+  box-sizing: border-box;
+}
+
+section ul li p {
+  font-size: 1.5rem;
+}
+
+section ul li i {
+  display: inline-block;
+  width: 100%;
+  background: lavender;
+  margin-top: 1rem;
+  font-style: normal;
+}
+
+section ul li span {
+  display: inline-block;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+section ul li span img {
+  background-image: 100% 100%;
 }
 
 footer {
