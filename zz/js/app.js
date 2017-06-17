@@ -11,7 +11,6 @@ var jj=0;
 			async:false,
 			success:function(data)
 			{
-				console.log(data);
 				a=data.data.data;
 			}
 	});
@@ -22,24 +21,16 @@ var jj=0;
 			{
 				ul.innerHTML+="<li>"+"<p>"+a[i].ad.avatar_name+"</p>"+"<i>"+a[i].ad.display_info+"</i>"+"<span>"+"</span>"+"</li>";
 			}
-			if(a[i].group!=null && a[i].group.mp4_url!=null)
+			if(a[i].group!=null && a[i].group.large_cover!=null)
 			{
 			ul.innerHTML+="<li>"+"<p>"+a[i].group.category_name+"</p>"
-			+"<i>"+a[i].group.content+"</i>"+"<span>"+"<video  src="+a[i].group.mp4_url+" width='100%' height='100%' id='vd'controls='controls'>"+"</video>"+"</span>"+"</li>";
+			+"<i>"+a[i].group.content+"</i>"+"<span>"+"<video  src="+a[i].group.mp4_url+" width='100%' height='100%' id='vd'controls='controls' poster="+a[i].group.large_cover.url_list[0].url+">"+"</video>"+"</span>"+"</li>";
 			}
 		}
 		var vdp=document.getElementById("vd");
-		console.log(vdp);
+		console.log(a);
 			vdp.addEventListener("touchstart",function()
 			{
-				if(vdp.paused)
-				{
-					vdp.play();
-				}
-				else
-				{
-					vdp.pause()
-				}
 				jj++;
 				if(jj==1)
 				{
@@ -51,4 +42,5 @@ var jj=0;
 					jj=0;
 				}
 			})
+			
 })
