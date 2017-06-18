@@ -17,14 +17,16 @@ section {
   height: 100%;
   overflow: hidden;
   background: #f3f3f3;
+  position: relative;
+  top: 0;
+  position: relative;
 }
 
 section > ul {
   width: 100%;
   box-sizing: border-box;
   border-bottom: 0.1rem solid #ccc;
-  position: relative;
-  top: 0;
+  position: absolute;
 }
 
 section > ul li {
