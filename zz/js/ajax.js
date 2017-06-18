@@ -2,7 +2,7 @@ $(function()
 {
 	var TpArr=[];
 	var DzArr=[];
-		 		var dz="http://proxy.e12e.com/?http://m.neihanshequ.com/?is_json=1&skip_guidence=1;
+		 		var dz="http://m.neihanshequ.com/?is_json=1&app_name=neihanshequ_video&min_time=1497699938&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
 		 		var	tp="http://m.neihanshequ.com/pic/?is_json=1&app_name=neihanshequ_web&min_time=1497695422&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
 
 //var vido="http://m.neihanshequ.com/video/?is_json=1&app_name=neihanshequ_web&min_time=1497758177&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
@@ -13,12 +13,13 @@ function ajax(attr,t)
 {
 	function xr(i)
 	{
-			ul.innerHTML+="<li>"+"<h1>"+"<img src='img/huaji.jpg'>"+"<span>"+"搞笑段子"+"</span>"+"</h1>"+"<p>"+t[i].group.content+"</p>"+"<div class='dv'>"+"<ul>"+"<li>"+"<span>"+"</span>"+"<p>"+"0"+"</p>"+"</li>"+"<li>"+"<span>"+"</span>"+"<p>"+"0"+"</p>"+"<li>"+"<span>"+"</span>"+"<p>"+"0"+"</p>"+"<ul>"+"<dv>"+"</li>"
+			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+'搞笑段子'+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><span></span><p>"+0+"</p></ul></div></li>";
 	}
 	$.ajax({
 		url:attr,
 		type:"get",
-		dataType:"json",
+		dataType:"jsonp",
+		jsonpCallback:"callback",
 		success:function(data)
 		{
 			for(var i=0;i<data.data.data.length;i++)
