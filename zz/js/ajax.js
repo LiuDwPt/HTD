@@ -2,19 +2,46 @@ $(function()
 {
 	var TpArr=[];
 	var DzArr=[];
-		 		var dz="http://m.neihanshequ.com/?is_json=1&app_name=neihanshequ_video&min_time=1497699938&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
-		 		var	tp="http://m.neihanshequ.com/pic/?is_json=1&app_name=neihanshequ_web&min_time=1497695422&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
+	var video=[];
+		 		var dz="http://m.neihanshequ.com/?skip_guidence=1&is_json=1&app_name=neihanshequ_video&min_time=1497699938&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
+		 		var	tp="http://m.neihanshequ.com/pic/skip_guidence=1?is_json=1&app_name=neihanshequ_web&min_time=1497695422&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
 
 //var vido="http://m.neihanshequ.com/video/?is_json=1&app_name=neihanshequ_web&min_time=1497758177&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
-	var y=0;
-	var my=0;
-	var top=0;
+	var x=0;
+	var mx=0;
+	var left=0;
+	var lh=0;
+	var js=document.getElementsByClassName("jz");
+	function xr(t,i)
+	{
+			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+'搞笑段子'+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li></ul></div></li>";
+	}
+	
+	
+	function sxjson(sxattr,t)
+	{
+		$.ajax({
+			type:"get",
+			url:sxattr,
+			dataType:"jsonp",
+			jsonpCallback:"callback",
+			success:function(data)
+			{
+				DzArr.splice(0,DzArr.length);
+				for(var i=0;i<data.data.data.length;i++)
+				{
+					t.push(data.data.data[i]);
+				}
+				for(var i=0;i<t.length;i++)
+				{
+					xr(DzArr,i);
+				}
+			}
+		});
+	}
+	
 function ajax(attr,t)
 {
-	function xr(i)
-	{
-			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+'搞笑段子'+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><span></span><p>"+0+"</p></ul></div></li>";
-	}
 	$.ajax({
 		url:attr,
 		type:"get",
@@ -22,32 +49,28 @@ function ajax(attr,t)
 		jsonpCallback:"callback",
 		success:function(data)
 		{
+				var ul=document.getElementById("ul");
+				var s=document.getElementById("s");
+				var ultop=ul.offsetTop;
+				var lh2=0;
 			for(var i=0;i<data.data.data.length;i++)
 				{
 					t.push(data.data.data[i]);
 				}
-				var ul=document.getElementById("ul");
 				for(var i=0;i<t.length;i++)
 				{
-					xr(i);
+					xr(DzArr,i);
+					lh+=parseInt($("#ul>li").eq(i).innerHeight());
 				}
-				var s=document.getElementById("s");
-				var ultop=ul.offsetTop;
-				s.addEventListener("touchstart",function(ev)
+				console.log(lh);
+				s.addEventListener("scroll",function()
 				{
-					y=ev.changedTouches[0].pageY;
-					top=ul.offsetTop;
-				})
-				
-				s.addEventListener("touchmove",function(ev)
-				{
-					var my=ev.changedTouches[0].pageY;
-					if(top>=ultop && my-y<0)
+					console.log(s.scrollTop,s.scrollHeight);
+					if(s.scrollTop==lh)
 					{
-						ul.style.top=ultop+"px";
+						alert(1);
 					}
-					ul.style.top=-(my-y)+top+"px";
-				})	
+				})
 		}
 	})
 }
