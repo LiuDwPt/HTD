@@ -9,14 +9,16 @@ $(function()
 	var lh=0;
 	var js=document.getElementsByClassName("jz");
 	var hd=0;
+	var pm=document.getElementsByClassName("pm");
+	var tpo=document.getElementsByClassName("top");
 	//渲染替代区域
 	function xr(t,i,c)
 	{
-			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li></ul></div></li>";
+			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>0</p></li></ul></div></li>";
 	}
 	function td(t,i,c)
 	{
-		$("#ul>li").eq(i).html("<h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li></ul></div>")
+		$("#ul>li").eq(i).html("<h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>0</p></li></ul></div>")
 	}
 	
 	
@@ -74,6 +76,7 @@ function ajax(attr,t,c)
 					y=ev.changedTouches[0].pageY;
 					top=ul.offsetTop;
 				})
+				pm[0].style.display="none";
 				ul.addEventListener("touchmove",function(ev)
 				{
 					lw=0;
@@ -81,20 +84,26 @@ function ajax(attr,t,c)
 					{	
 						lw+=parseInt(getComputedStyle(list[i],null)["height"]+getComputedStyle(list[i],null)["padding"]);
 					}
-					 hd=lw-s.clientHeight;
-					var pm=document.getElementsByClassName("pm");
+					if(ul.offsetTop < -(s.clientHeight))
+					{
+						tpo[0].style.bottom="4rem";
+					}
+					hd=lw-s.clientHeight;
 					my=ev.changedTouches[0].pageY;
 					if(top==0 && my-y>150)
 					{
 						$(".sxl").css("top",my-y+"px");
 						return;
 					}
-					if(ul.offsetTop<=-hd)
+					if(ul.offsetTop<=-(hd+pm[0].clientHeight))
 					{
+						pm[0].style.display="block";
 						for(var b=0;b<t.length;b++)
 						{
 							xr(t,b,c);
 						}
+						pm[0].style.display="show";
+						return;
 					}
 					if(ul.offsetTop<=0)
 					{
