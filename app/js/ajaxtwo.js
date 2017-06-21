@@ -211,13 +211,25 @@ function ajax(attr,t,c)
 					{
 						if(ev.changedTouches.length==2)
 						{
-							alert(1);
+							$(".ckdt img").on("touchmove",function(ev)
+							{
+								a=ev.changedTouches[0].pageX;
+								b=ev.changedTouches[1].pageX;
+								aw=b-a;
+								c=ev.changedTouches[0].pageY;
+								d=ev.changedTouches[1].pageY;
+								ch=d-c;
+								ev.preventDefault();
+								$(".ckdt img").css({width:ch,height:ch});
+							})
 						}
+						
 					})
 				});
 				$(".ckdt").on("tap",function()
 				{
 					$(".ckdt").css("display","none");
+					$(".ckdt img").css({width:"100%",height:"100%"});
 				})
 					$("#ul>li>p").on("tap",function()
 					{
