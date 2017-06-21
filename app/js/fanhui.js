@@ -2,7 +2,7 @@ $(function()
 {
 	$(".top").on("touchstart",function()
 	{
-		$("#ul").css({top:"0px"});
+		$("#s").scrollTop(0);
 		$(".top").css({bottom:"-4rem"});
 	})
 

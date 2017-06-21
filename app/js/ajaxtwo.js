@@ -9,6 +9,28 @@ var TpArr=[];		 		var	tp="http://m.neihanshequ.com/pic/?skip_guidence=1&is_json=
 	var top=0;
 	var lh=0;
 	var js=document.getElementsByClassName("jz");
+	var hd=0;
+	var pm=document.getElementsByClassName("pm");
+	var tpo=document.getElementsByClassName("top");
+	var ultwo;
+	var listtwo;
+	var mda=0;
+	var dza=document.getElementsByClassName("dza");
+	var kk=0;
+	var xrlist;
+	var juli=0;
+	var fpl=document.getElementsByClassName("fpl");
+	var ldw=document.getElementsByClassName("plul");
+	var txt=document.getElementById("txt");
+	var fsla=document.getElementsByClassName("fsla");
+	var userkong=document.getElementsByClassName("userkong");
+	var arr=[];
+	var idx=0;
+	var lili=[];
+	var pl=document.getElementsByClassName("pl");
+	var pllogo=document.getElementsByClassName("pllogo");
+	var cimg=pllogo[0].getElementsByTagName("img");
+	var plul=document.getElementsByClassName("plul");
 	//渲染替代区域
 	function xr(t,i,c)
 	{
@@ -62,6 +84,9 @@ function ajax(attr,t,c)
 				var ultop=ul.offsetTop;
 				var lh2=0;
 				var lw=0;
+				var dv;
+				var djlist;
+				var sl=0;
 				for(var i=0;i<data.data.data.length;i++)
 				{
 					t.push(data.data.data[i]);
@@ -70,31 +95,68 @@ function ajax(attr,t,c)
 				{
 					xr(t,i,c);
 				}
-				for(var i=0;i<t.length;i++)
-				{
-					lw+=list[i].clientHeight;
+				for(var i=0;i<list.length;i++)
+				{	
+						arr.push(["",""]);
 				}
-				console.log(list);
 				s.addEventListener("touchstart",function(ev)
 				{
 					y=ev.changedTouches[0].pageY;
+					top=ul.offsetTop;
 				})
-
 				ul.addEventListener("touchmove",function(ev)
 				{
-					console.log(lw,s.scrollTop);
+					lw=0;
+					for(var i=0;i<list.length;i++)
+					{	
+						lw+=parseInt(getComputedStyle(list[i],null)["height"]+getComputedStyle(list[i],null)["padding"]);
+					}
+					if(s.scrollTop>s.clientHeight)
+					{
+						tpo[0].style.bottom="4rem";
+					}
+					else
+					{
+						tpo[0].style.bottom="-4rem";
+					}
+					hd=lw-s.clientHeight;
 					my=ev.changedTouches[0].pageY;
 					if(s.scrollTop==0 && my-y>150)
 					{
 						$(".sxl").css("top",my-y+"px");
+						return;
 					}
+					if(s.scrollTop>=hd)
+					{
+						$("#ul").append("<div class='pm'>拼命加载中....</div>")
+						for(var b=0;b<t.length;b++)
+						{
+							xr(t,b,c);
+						}
+						$(".pm").remove();
+						return;
+					}
+					if(ul.offsetTop<=0)
+					{
+						$("#ul").css("top",(my-y)+top+"px");
+					}
+					var dvtwo=document.getElementsByClassName("dv");
+					dianzhan(dvtwo)
 				})
 				var deg=0;
 				var f=true;
 				$(".ts").fadeOut();
 				s.addEventListener("touchend",function(ev)
 				{
-					if((s.scrollTop==0 && f)&& my-y>0)
+					if(top>0)
+					{
+						$("#ul").css("top",0+"px");
+					}
+					if(ul.offsetTop<=-hd)
+					{
+						$("#ul").css("top",-hd+"px");
+					}
+					if((s.scrollTop==0 && f) && my-y>150)
 					{
 						f=false;
 						var time=setInterval(function()
@@ -102,24 +164,75 @@ function ajax(attr,t,c)
 							deg=deg+30;
 							$(".sxl").css({transform:"rotate("+deg+"deg)",transformOrigin:"center center"})
 							if(deg>=1000 && my-y>150)
-							{ 
+							{
 								clearInterval(time);
 								deg=0;
 								$(".sxl").css("top","-25%");
 								$(".sxl").css({transform:"rotate(0deg)"});
 								f=true;
 								sxjson(attr,t,c);
+								for(var i=0;i<list.length;i++)
+								{	
+									arr[i][1]="";
+								}
 								$(".ts").fadeIn();
+								$("#ul").css("top",0+"px");
+								my=0;
+								y=0;
 								setTimeout(function()
 								{
 									$(".ts").fadeOut();
 								},1000)
-									
 							}
 						},30)
-						
 					}
+					dianzhan(dv);
+//					pldianji(lili,plul[0],pl[0],cimg[0]);
+					$("#ul>li>p").on("tap",function()
+					{
+						idx=$(this).parent().index();
+						xrlist=$(this).parent().html();
+						arr[idx][0]="<li>"+xrlist+"</li>";
+						
+						for(var i=0;i<arr.length;i++)
+						{
+							$(".plul").html(arr[idx][0]);
+							$(".fpl").html(arr[idx][1]);
+						}
+						
+						$(".pl").css("display","block");
+						$(".pllogo img:eq(0)").on("tap",function()
+					{
+						sl=0;
+						$(".fpl").html("");
+						$(".pl").css("display","none");
+					})
+					})
 				})
+			var dv=document.getElementsByClassName("dv");
+			for(var i=0;i<list.length;i++)
+				{	
+					lili.push(list[i].children[1]);
+				}
+			dianzhan(dv);
+			fsla[0].addEventListener("tap",function()
+			{
+				if(txt.value=="")
+				{
+					userkong[0].innerHTML="内容不能为空";
+					userkong[0].style.display="block";
+					setTimeout(function()
+					{
+						userkong[0].style.display="none";
+					},1000);
+				}
+				else
+				{	
+					fpl[0].innerHTML+="<li>"+txt.value+"</li>";
+					arr[idx][1]+="<li>"+txt.value+"</li>";
+					txt.value="";
+				}
+			})
 		}
 	})
 }
@@ -127,4 +240,74 @@ function ajax(attr,t,c)
 //调用函数渲染
 ajax(tp,TpArr,"爆笑GIF");
 
+function dianzhan(dv)
+{
+	for(var i=0;i<dv.length;i++)
+	{
+		ultwo=dv[i].getElementsByTagName("ul");
+	 listtwo=dv[i].getElementsByTagName("li");
+	for(var j=0;j<listtwo.length;j++)
+		{
+			listtwo[j].index=j;
+			listtwo[j].addEventListener("tap",function()
+		{
+			this.dx=0;
+				if(this.index==0)
+				{
+					if(this.nextElementSibling.count==1)
+					{
+						dza[0].innerHTML="您已经踩过了";
+						dza[0].style.display="block";
+						setTimeout(function()
+						{
+							dza[0].style.display="none";
+						},1000)
+						return;
+					}
+					this.count=1;
+					this.getElementsByTagName("span")[0].style.background="url(img/haha.png) no-repeat";
+					this.getElementsByTagName("span")[0].style.backgroundSize="100% 100%";
+					if(this.getElementsByTagName("span")[0].nextElementSibling.innerHTML>=1)
+					{
+						return;
+					}
+					this.getElementsByTagName("span")[0].nextElementSibling.innerHTML++;
+				}
+				if(this.index==1)
+				{
+					
+					if(this.previousSibling.count==1)
+					{
+						dza[0].innerHTML="您已经赞过了";
+						dza[0].style.display="block";
+						setTimeout(function()
+						{
+							dza[0].style.display="none";
+						},1000)
+						return;
+					}
+					this.count=1;
+					this.getElementsByTagName("span")[0].style.background="url(img/caiw.png) no-repeat 100% 100%"
+					this.getElementsByTagName("span")[0].style.backgroundSize="100% 100%";
+					if(this.getElementsByTagName("span")[0].nextElementSibling.innerHTML>=1)
+					{
+						return;
+					}
+					this.getElementsByTagName("span")[0].nextElementSibling.innerHTML++
+				}
+				if(this.index==2)
+				{
+					this.getElementsByTagName("span")[0].style.background="url(img/socaw.png) no-repeat 100% 100%"
+					this.getElementsByTagName("span")[0].style.backgroundSize="100% 100%";
+					if(this.getElementsByTagName("span")[0].nextElementSibling.innerHTML>=1)
+					{
+						return;
+					}
+					this.getElementsByTagName("span")[0].nextElementSibling.innerHTML++
+				}
+		})
+		}
+	}
+	
+}
 });

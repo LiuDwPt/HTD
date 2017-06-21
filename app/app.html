@@ -7,9 +7,11 @@
 		<link rel="stylesheet" href="css/all.css" />
 		<link rel="stylesheet" href="css/app.css" />
 		<script src="js/jquery-3.2.1.js"></script>
+		<script src="js/fanhui.js"></script>
 		<script src="js/ajax.js"></script>
 		<script src="js/dz.js"></script>
 		<script src="js/fanhui.js"></script>
+		<script src="js/zepto.min.js"></script>
 		<script>
 			document.documentElement.style.fontSize=innerWidth/25+"px";
 		</script>
@@ -29,15 +31,33 @@
 			</div>
 	</header>
 		<section id="s">
+			<div class="dza" style="display:none"></div>
 			<div class="sxl"></div>
 				<div class="ts">为您刷新20条新数据</div>
 				<div class="top"><img src="img/top.png" alt="" /></div>
 			<ul id="ul">
-				<div class="pm">拼命加载中.....</div>
 			</ul>
 		</section>
 		<footer>
 			
 		</footer>
+		<div class="pl" style="display:none">
+			<header>
+			<div class="pllogo">
+				<img src="img/fanhui.png"><img src="img/timg.jpg">
+			</div>
+	</header>
+		<section id="s">
+			<div class="userkong"></div>
+			<ul class="plul"></ul>
+			<ul class="fpl">
+			</ul>
+		</section>
+		<footer>
+			<input type="text" placeholder="请开始你的表演" id="txt"/>
+			<input type="submit" id="fs"/>
+			<label for="fs" class="fsla"></label>
+		</footer>
+		</div>
 	</body>
 </html>
