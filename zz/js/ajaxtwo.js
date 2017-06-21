@@ -1,7 +1,8 @@
 $(function()
 {
-	var DzArr=[];
-		 		var dz="http://m.neihanshequ.com/?skip_guidence=1&is_json=1&app_name=neihanshequ_video&min_time=1497699938&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
+
+		 		
+var TpArr=[];		 		var	tp="http://m.neihanshequ.com/pic/?skip_guidence=1&is_json=1&app_name=neihanshequ_web&min_time=1497847534.8100002&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
 //var vido="http://m.neihanshequ.com/video/?is_json=1&app_name=neihanshequ_web&min_time=1497758177&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
 	var y=0;
 	var my=0;
@@ -25,19 +26,20 @@ $(function()
 	var userkong=document.getElementsByClassName("userkong");
 	var arr=[];
 	var idx=0;
+	var lili=[];
 	var pl=document.getElementsByClassName("pl");
 	var pllogo=document.getElementsByClassName("pllogo");
 	var cimg=pllogo[0].getElementsByTagName("img");
 	var plul=document.getElementsByClassName("plul");
-	var lili=[];
 	//渲染替代区域
 	function xr(t,i,c)
 	{
-			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>0</p></li></ul></div></li>";
+			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='gif'><img src="+t[i].group.large_image.url_list[0].url+"></div><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li></ul></div></li>";
 	}
+	
 	function td(t,i,c)
 	{
-		$("#ul>li").eq(i).html("<h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>0</p></li></ul></div>")
+		$("#ul>li").eq(i).html("<h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='gif'><img src="+t[i].group.large_image.url_list[0].url+"></div><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li></ul></div>")
 	}
 	
 	
@@ -59,8 +61,8 @@ $(function()
 					t.push(data.data.data[i]);
 				}
 				for(var i=0;i<$("#ul>li").length;i++)
-				{	
-						td(t,i,c);
+				{
+					td(t,i,c);
 				}
 			}
 		});
@@ -201,7 +203,22 @@ function ajax(attr,t,c)
 					}
 					dianzhan(dv);
 //					pldianji(lili,plul[0],pl[0],cimg[0]);
-					
+				$(".gif img").on("tap",function()
+				{
+					$(".ckdt").html($(this).parent().html());
+					$(".ckdt").css("display","block");
+					$(".ckdt img").on("touchstart",function(ev)
+					{
+						if(ev.changedTouches.length==2)
+						{
+							alert(1);
+						}
+					})
+				});
+				$(".ckdt").on("tap",function()
+				{
+					$(".ckdt").css("display","none");
+				})
 					$("#ul>li>p").on("tap",function()
 					{
 						idx=$(this).parent().index();
@@ -224,10 +241,6 @@ function ajax(attr,t,c)
 					})
 				})
 			var dv=document.getElementsByClassName("dv");
-			$(".dv li:eq(2)").on("tap",function()
-			{
-				ilike=$(this).parent().parent().html();
-			})
 			for(var i=0;i<list.length;i++)
 				{	
 					lili.push(list[i].children[1]);
@@ -256,7 +269,7 @@ function ajax(attr,t,c)
 }
 
 //调用函数渲染
-ajax(dz,DzArr,"搞笑段子");
+ajax(tp,TpArr,"爆笑GIF");
 
 function dianzhan(dv)
 {
@@ -328,5 +341,4 @@ function dianzhan(dv)
 	}
 	
 }
-
 });
