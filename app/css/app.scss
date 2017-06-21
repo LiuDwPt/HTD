@@ -28,6 +28,23 @@ section
     background:#f3f3f3;
     box-sizing: border-box;
     overflow: auto;
+    position:relative;
+    >.dza
+{
+    position:fixed;
+    z-index:10;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width:10rem;
+    height:10rem;
+    background:#000;
+    opacity: 0.5;
+    color:#fff;
+    line-height:10rem;
+    font-size:1.3rem;
+    text-align: center;
+}
     >ul
     {
         width:100%;
@@ -166,7 +183,8 @@ footer
 {
     width:100%;
     height:4em;
-    background:blue;
+    background:url(../img/1.jpg) no-repeat;
+    background-size:cover;
 }
 
 .sxl
@@ -259,22 +277,6 @@ footer
     bottom:-4rem;
     z-index:10;
     transition: all 1s;
-}
-.dza
-{
-    position:absolute;
-    z-index:10;
-    left:50%;
-    top:50%;
-    transform: translate(-50%,-50%);
-    width:10rem;
-    height:10rem;
-    background:#000;
-    opacity: 0.5;
-    color:#fff;
-    line-height:10rem;
-    font-size:1.3rem;
-    text-align: center;
 }
 .pl
 {
@@ -375,4 +377,38 @@ li
     line-height:10rem;
     text-align: center;
     z-index: 10;
+}
+.pm
+{
+    position:absolute;
+    bottom: 0%;
+}
+.ckdt
+{
+    width:100%;
+    height:100%;
+    background:#000;
+    position:absolute;
+    top:0;
+    left:0;
+    overflow-y: auto;
+    img
+    {
+        position:absolute;
+        top:50%;
+        transform: translateY(-50%);
+        width:100%;
+    }
+}
+.qqq
+{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    >header
+    {
+        
+    }
 }

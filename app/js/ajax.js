@@ -25,13 +25,13 @@ $(function()
 	var userkong=document.getElementsByClassName("userkong");
 	var arr=[];
 	var idx=0;
-	var lili=[];
 	var pl=document.getElementsByClassName("pl");
 	var pllogo=document.getElementsByClassName("pllogo");
 	var cimg=pllogo[0].getElementsByTagName("img");
 	var plul=document.getElementsByClassName("plul");
+	var lili=[];
 	//渲染替代区域
-	function xr(t,i,c,ob)
+	function xr(t,i,c)
 	{
 			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>0</p></li></ul></div></li>";
 	}
@@ -126,12 +126,27 @@ function ajax(attr,t,c)
 					}
 					if(s.scrollTop>=hd)
 					{
-						$("#ul").append("<div class='pm'>拼命加载中....</div>")
-						for(var b=0;b<t.length;b++)
-						{
-							xr(t,b,c);
-						}
-						$(".pm").remove();
+						$(".pm").css("display","block");
+						$.ajax({
+								type:"get",
+								url:attr,
+								dataType:"jsonp",
+								jsonpCallback:"callback",
+								success:function(data)
+								{
+									
+										t.splice(0,t.length);
+										for(var i=0;i<data.data.data.length;i++)
+										{
+											t.push(data.data.data[i]);
+										}
+										for(var i=0;i<5;i++)
+										{	
+											xr(t,i,c);
+										}
+										$(".pm").css("display","none");
+								}
+							});
 						return;
 					}
 					if(ul.offsetTop<=0)
@@ -186,6 +201,7 @@ function ajax(attr,t,c)
 					}
 					dianzhan(dv);
 //					pldianji(lili,plul[0],pl[0],cimg[0]);
+					
 					$("#ul>li>p").on("tap",function()
 					{
 						idx=$(this).parent().index();
@@ -208,6 +224,10 @@ function ajax(attr,t,c)
 					})
 				})
 			var dv=document.getElementsByClassName("dv");
+			$(".dv li:eq(2)").on("tap",function()
+			{
+				ilike=$(this).parent().parent().html();
+			})
 			for(var i=0;i<list.length;i++)
 				{	
 					lili.push(list[i].children[1]);

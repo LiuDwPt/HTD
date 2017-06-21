@@ -128,12 +128,27 @@ function ajax(attr,t,c)
 					}
 					if(s.scrollTop>=hd)
 					{
-						$("#ul").append("<div class='pm'>拼命加载中....</div>")
-						for(var b=0;b<t.length;b++)
-						{
-							xr(t,b,c);
-						}
-						$(".pm").remove();
+						$(".pm").css("display","block");
+						$.ajax({
+								type:"get",
+								url:attr,
+								dataType:"jsonp",
+								jsonpCallback:"callback",
+								success:function(data)
+								{
+									
+										t.splice(0,t.length);
+										for(var i=0;i<data.data.data.length;i++)
+										{
+											t.push(data.data.data[i]);
+										}
+										for(var i=0;i<5;i++)
+										{	
+											xr(t,i,c);
+										}
+										$(".pm").css("display","none");
+								}
+							});
 						return;
 					}
 					if(ul.offsetTop<=0)
@@ -188,6 +203,22 @@ function ajax(attr,t,c)
 					}
 					dianzhan(dv);
 //					pldianji(lili,plul[0],pl[0],cimg[0]);
+				$(".gif img").on("tap",function()
+				{
+					$(".ckdt").html($(this).parent().html());
+					$(".ckdt").css("display","block");
+					$(".ckdt img").on("touchstart",function(ev)
+					{
+						if(ev.changedTouches.length==2)
+						{
+							alert(1);
+						}
+					})
+				});
+				$(".ckdt").on("tap",function()
+				{
+					$(".ckdt").css("display","none");
+				})
 					$("#ul>li>p").on("tap",function()
 					{
 						idx=$(this).parent().index();
