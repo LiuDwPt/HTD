@@ -31,15 +31,16 @@ var TpArr=[];		 		var	tp="http://m.neihanshequ.com/pic/?skip_guidence=1&is_json=
 	var pllogo=document.getElementsByClassName("pllogo");
 	var cimg=pllogo[0].getElementsByTagName("img");
 	var plul=document.getElementsByClassName("plul");
+	var yy=true;
 	//渲染替代区域
 	function xr(t,i,c)
 	{
-			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='gif'><img src="+t[i].group.large_image.url_list[0].url+"></div><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li></ul></div></li>";
+			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='gif'><img src="+t[i].group.large_image.url_list[0].url+"></div><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span id='like'></span><p>"+0+"</p></li></ul></div></li>";
 	}
 	
 	function td(t,i,c)
 	{
-		$("#ul>li").eq(i).html("<h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='gif'><img src="+t[i].group.large_image.url_list[0].url+"></div><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li></ul></div>")
+		$("#ul>li").eq(i).html("<h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='gif'><img src="+t[i].group.large_image.url_list[0].url+"></div><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span id='like'></span><p>"+0+"</p></li></ul></div>")
 	}
 	
 	
@@ -95,6 +96,7 @@ function ajax(attr,t,c)
 				{
 					xr(t,i,c);
 				}
+				$(".pmjz").remove();
 				for(var i=0;i<list.length;i++)
 				{	
 						arr.push(["",""]);
@@ -128,7 +130,10 @@ function ajax(attr,t,c)
 					}
 					if(s.scrollTop>=hd)
 					{
-						$(".pm").css("display","block");
+						if(yy)
+						{
+						yy=false;
+						$("#s").append("<div class='pm'></div>");
 						$.ajax({
 								type:"get",
 								url:attr,
@@ -146,9 +151,11 @@ function ajax(attr,t,c)
 										{	
 											xr(t,i,c);
 										}
-										$(".pm").css("display","none");
+										$(".pm").remove();
+										yy=true;
 								}
 							});
+						}
 						return;
 					}
 					if(ul.offsetTop<=0)
@@ -156,7 +163,7 @@ function ajax(attr,t,c)
 						$("#ul").css("top",(my-y)+top+"px");
 					}
 					var dvtwo=document.getElementsByClassName("dv");
-					dianzhan(dvtwo)
+					dianzhan(dvtwo);
 				})
 				var deg=0;
 				var f=true;
@@ -185,7 +192,7 @@ function ajax(attr,t,c)
 								$(".sxl").css("top","-25%");
 								$(".sxl").css({transform:"rotate(0deg)"});
 								f=true;
-								sxjson(attr,t,c);
+								sxjson(attr,t,c,m);
 								for(var i=0;i<list.length;i++)
 								{	
 									arr[i][1]="";
@@ -202,7 +209,6 @@ function ajax(attr,t,c)
 						},30)
 					}
 					dianzhan(dv);
-//					pldianji(lili,plul[0],pl[0],cimg[0]);
 				$(".gif img").on("tap",function()
 				{
 					$(".ckdt").html($(this).parent().html());

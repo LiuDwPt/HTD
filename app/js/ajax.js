@@ -2,6 +2,7 @@ $(function()
 {
 	var DzArr=[];
 		 		var dz="http://m.neihanshequ.com/?skip_guidence=1&is_json=1&app_name=neihanshequ_video&min_time=1497699938&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
+var TpArr=[];		 var	tp="http://m.neihanshequ.com/pic/?skip_guidence=1&is_json=1&app_name=neihanshequ_web&min_time=1497847534.8100002&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
 //var vido="http://m.neihanshequ.com/video/?is_json=1&app_name=neihanshequ_web&min_time=1497758177&csrfmiddlewaretoken=70faddc0d620ee6ba01b2e0627593360";
 	var y=0;
 	var my=0;
@@ -29,18 +30,29 @@ $(function()
 	var pllogo=document.getElementsByClassName("pllogo");
 	var cimg=pllogo[0].getElementsByTagName("img");
 	var plul=document.getElementsByClassName("plul");
+	var ultt=document.getElementById("ultt")
 	var lili=[];
+	var yy=true;
+	var iikk=[];
+	var sclike=[];
+	var dddq=0;
 	//渲染替代区域
-	function xr(t,i,c)
+	function xr(t,i,c,m)
 	{
-			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>0</p></li></ul></div></li>";
+
+			ul.innerHTML+="<li><h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span id='like'></span><p>0</p></li></ul></div></li>";
+
+			
+
+			
 	}
-	function td(t,i,c)
+	function td(t,i,c,m)
 	{
-		$("#ul>li").eq(i).html("<h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span></span><p>0</p></li></ul></div>")
+			$("#ul>li").eq(i).html("<h1><img src='img/huaji.jpg'><span>"+c+"</span></h1><p>"+t[i].group.content+"</p><div class='dv'><ul><li><span></span><p>"+0+"</p></li><li><span></span><p>"+0+"</p></li><li><span id='like'></span><p>0</p></li></ul></div>")
+
+		
 	}
-	
-	
+
 //	------------------------------------
 
 	//刷新界面
@@ -76,6 +88,7 @@ function ajax(attr,t,c)
 		jsonpCallback:"callback",
 		success:function(data)
 		{
+				$("#s").append("<div class='pmjz'></div>");
 				var ul=document.getElementById("ul");
 				var list=ul.children;
 				var s=document.getElementById("s");
@@ -93,6 +106,7 @@ function ajax(attr,t,c)
 				{
 					xr(t,i,c);
 				}
+				$(".pmjz").remove();
 				for(var i=0;i<list.length;i++)
 				{	
 						arr.push(["",""]);
@@ -123,10 +137,14 @@ function ajax(attr,t,c)
 					{
 						$(".sxl").css("top",my-y+"px");
 						return;
-					}
+					}					
 					if(s.scrollTop>=hd)
 					{
-						$(".pm").css("display","block");
+	
+						if(yy)
+						{
+							yy=false;
+						$("#s").append("<div class='pm'></div>");
 						$.ajax({
 								type:"get",
 								url:attr,
@@ -144,9 +162,11 @@ function ajax(attr,t,c)
 										{	
 											xr(t,i,c);
 										}
-										$(".pm").css("display","none");
+										$(".pm").remove();
+										yy=true;
 								}
 							});
+						}
 						return;
 					}
 					if(ul.offsetTop<=0)
@@ -200,22 +220,20 @@ function ajax(attr,t,c)
 						},30)
 					}
 					dianzhan(dv);
-//					pldianji(lili,plul[0],pl[0],cimg[0]);
+
 					
 					$("#ul>li>p").on("tap",function()
 					{
 						idx=$(this).parent().index();
 						xrlist=$(this).parent().html();
 						arr[idx][0]="<li>"+xrlist+"</li>";
-						
 						for(var i=0;i<arr.length;i++)
 						{
 							$(".plul").html(arr[idx][0]);
 							$(".fpl").html(arr[idx][1]);
 						}
-						
 						$(".pl").css("display","block");
-						$(".pllogo img:eq(0)").on("tap",function()
+					$(".pllogo img:eq(0)").on("tap",function()
 					{
 						sl=0;
 						$(".fpl").html("");
@@ -223,11 +241,21 @@ function ajax(attr,t,c)
 					})
 					})
 				})
+				console.log($(".nav li:eq(2)"));
+				$(".nav li:eq(2)").on("tap",function()
+				{
+					$(".ml").css("display","block");
+					for(var i=0;i<sclike.length;i++)
+					{
+						$(".ml ul").html($(".ml ul").html()+"<li>"+sclike[i]+"</li>");
+					}
+				})
+				$(".ml").on("tap",function()
+				{
+					$(".ml ul").html("");
+					$(".ml").css("display","none");
+				})
 			var dv=document.getElementsByClassName("dv");
-			$(".dv li:eq(2)").on("tap",function()
-			{
-				ilike=$(this).parent().parent().html();
-			})
 			for(var i=0;i<list.length;i++)
 				{	
 					lili.push(list[i].children[1]);
@@ -254,10 +282,12 @@ function ajax(attr,t,c)
 		}
 	})
 }
-
 //调用函数渲染
 ajax(dz,DzArr,"搞笑段子");
-
+$(".nav li:eq(1)").on(function()
+{
+	
+})
 function dianzhan(dv)
 {
 	for(var i=0;i<dv.length;i++)
@@ -315,13 +345,17 @@ function dianzhan(dv)
 				}
 				if(this.index==2)
 				{
+					dddq++
+					console.log(dddq);
 					this.getElementsByTagName("span")[0].style.background="url(img/socaw.png) no-repeat 100% 100%"
 					this.getElementsByTagName("span")[0].style.backgroundSize="100% 100%";
 					if(this.getElementsByTagName("span")[0].nextElementSibling.innerHTML>=1)
 					{
 						return;
 					}
+					$(".xhd").remove();
 					this.getElementsByTagName("span")[0].nextElementSibling.innerHTML++
+					sclike.push(this.parentNode.parentNode.parentNode.innerHTML);
 				}
 		})
 		}
